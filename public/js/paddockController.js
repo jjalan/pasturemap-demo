@@ -4,6 +4,7 @@ app.controller('paddockController',['$scope',function($scope){
   $scope.coordinates=[];
   $scope.paddockArea=0;
   
+  // This function allows user to add a new coordinate
   $scope.add=function(){
     // add to the list
     if(!isNaN($scope.x) && !isNaN($scope.y)){
@@ -15,6 +16,8 @@ app.controller('paddockController',['$scope',function($scope){
       calculatePaddockArea();
     }
   }
+  
+  // This function allows user to delete an existing coordinate
   $scope.delete=function(coordinate){
 
     var deleteIndex = -1;
@@ -31,10 +34,13 @@ app.controller('paddockController',['$scope',function($scope){
       calculatePaddockArea();
     }
   }
+  
+  // This function allows user to save the paddock area as an image
   $scope.save=function(){
     window.open(getCanvasDOMElement().toDataURL('image/png'));
   }
   
+  // Internal utility functions to visualize the area as well as calcualate the area
   function reDrawMap(){
     var canvas = getCanvasDOMElement();
     resizeCanvasToDisplaySize(canvas);
@@ -82,7 +88,6 @@ app.controller('paddockController',['$scope',function($scope){
     
     $scope.paddockArea = area;
   }
-  
   function resizeCanvasToDisplaySize(canvas) {
      // look up the size the canvas is being displayed
      const width = canvas.clientWidth;
@@ -101,6 +106,7 @@ app.controller('paddockController',['$scope',function($scope){
     return document.getElementById('map');
   }
   
+  // Initialize the application with sample example
   initializeWithDemo();
   function initializeWithDemo(){
     $scope.coordinates.push({x:200,y:280,id:id++});

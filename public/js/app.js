@@ -1,1 +1,1 @@
-var app = angular.module('pasturemap',[]);
+var app = angular.module('pasturemap',[]); // main entry point for pasture map application
