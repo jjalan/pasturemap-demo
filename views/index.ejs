@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pasturemap">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Pasturemap Demo</title>
+    <link rel="stylesheet" href="./public/css/bootstrap/3.3.7/bootstrap.min.css" >
+    <link rel="stylesheet" href="./public/css/bootstrap/3.3.7/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./public/css/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="./public/css/main.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container" ng-controller="paddockController">
+      <br/><br/><br/>
+      <div class="row">
+        <h1>PastureMap Coding Challenge</h1>
+      </div>
+      <br/><br/>
+      <div class="row">
+        <div class='col-lg-4 col-md-4 col-sm-4 col-xs-12'>
+          <br/>
+          <h4>Paddock Coordinates</h4>
+          <hr/>
+          <div class="row">
+            <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+              <input type="number" class="form-control" ng-model="x" placeholder="X Coordinate">
+            </div>
+            <div class="form-group col-lg-5 col-md-5 col-sm-5 col-xs-5">
+              <input type="number" class="form-control" ng-model="y" placeholder="Y Coordinate">
+            </div>
+            <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-2">
+              <button class="btn btn-circle" ng-click="add()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
+          </div>
+          <hr/>
+          <div class="co-ordinates">
+						<div ng-repeat="coordinate in coordinates" class="co-ordinate">
+              [{{coordinate.x}}, {{coordinate.y}}]  <button href="#" ng-click="delete(coordinate)" class="pull-right btn btn-circle"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <div class='col-lg-8 col-md-8 col-sm-8 col-xs-12'>
+          <br/>
+          <h4>Map</h4>
+          <hr/>
+          <div ng-if="coordinates.length>2" class="row text-center">
+            Total Area: {{paddockArea}} unit<sup>2</sup>
+          </div>
+          <div class="row">
+            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+              <canvas id="map"></canvas>
+            </div>
+          </div>
+          <div ng-if="coordinates.length<=2" class="text-center label-warning">
+            Please enter a minimum of 3 co-ordinates to see paddock shape
+          </div>
+          <div ng-if="coordinates.length>2" class="row">
+            <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center'>
+              <button ng-click="save()" class="btn btn-circle"><i class="fa fa-save" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./public/js/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./public/js/bootstrap/3.3.7/bootstrap.min.js"></script>
+    <script src="./public/js/angular/1.6.4/angular.min.js"></script>
+    <script src="./public/js/app.js"></script>
+    <script src="./public/js/paddockController.js"></script>
+  </body>
+</html>
